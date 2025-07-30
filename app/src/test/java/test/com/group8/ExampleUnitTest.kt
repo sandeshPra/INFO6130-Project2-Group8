@@ -1,4 +1,4 @@
-package jlin2.examples.localtesting
+package test.com.localtesting
 
 import org.junit.Test
 
