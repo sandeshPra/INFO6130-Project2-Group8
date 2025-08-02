@@ -21,36 +21,42 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class MainActivityTest {
+class MainActivityTest 
+{
 
     @Rule
     @JvmField
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Before
-    fun setUp() {
+    fun setUp() 
+    {
         Intents.init()
     }
 
     @After
-    fun tearDown() {
+    fun tearDown() 
+    {
         Intents.release()
     }
 
     @Test
-    fun testInitialTextView() {
+    fun testInitialTextView() 
+    {
         onView(withId(R.id.textToBeChanged)).check(matches(withText("Hello from MainActivity")))
     }
 
     @Test
-    fun testChangeTextWith123() {
+    fun testChangeTextWith123() 
+    {
         onView(withId(R.id.editTextUserInput)).perform(typeText("123"), closeSoftKeyboard())
         onView(withId(R.id.changeTextBt)).perform(click())
         onView(withId(R.id.textToBeChanged)).check(matches(withText("123")))
     }
 
     @Test
-    fun testOpenActivityWith123() {
+    fun testOpenActivityWith123() 
+    {
         onView(withId(R.id.editTextUserInput)).perform(typeText("123"), closeSoftKeyboard())
         onView(withId(R.id.activityChangeTextBtn)).perform(click())
         Intents.intended(hasComponent(ShowTextActivity::class.java.name))
@@ -58,14 +64,16 @@ class MainActivityTest {
     }
 
     @Test
-    fun testChangeTextEmpty() {
+    fun testChangeTextEmpty() 
+    {
         onView(withId(R.id.editTextUserInput)).perform(typeText(""), closeSoftKeyboard())
         onView(withId(R.id.changeTextBt)).perform(click())
         onView(withId(R.id.textToBeChanged)).check(matches(withText("")))
     }
 
     @Test
-    fun testOpenActivityEmpty() {
+    fun testOpenActivityEmpty() 
+    {
         onView(withId(R.id.editTextUserInput)).perform(typeText(""), closeSoftKeyboard())
         onView(withId(R.id.activityChangeTextBtn)).perform(click())
         Intents.intended(hasComponent(ShowTextActivity::class.java.name))
@@ -73,14 +81,16 @@ class MainActivityTest {
     }
 
     @Test
-    fun testChangeTextWithAbcdef() {
+    fun testChangeTextWithAbcdef() 
+    {
         onView(withId(R.id.editTextUserInput)).perform(typeText("abcdef"), closeSoftKeyboard())
         onView(withId(R.id.changeTextBt)).perform(click())
         onView(withId(R.id.textToBeChanged)).check(matches(withText("abcdef")))
     }
 
     @Test
-    fun testOpenActivityWithAbcdef() {
+    fun testOpenActivityWithAbcdef() 
+    {
         onView(withId(R.id.editTextUserInput)).perform(typeText("abcdef"), closeSoftKeyboard())
         onView(withId(R.id.activityChangeTextBtn)).perform(click())
         Intents.intended(hasComponent(ShowTextActivity::class.java.name))
@@ -88,12 +98,13 @@ class MainActivityTest {
     }
 
     @Test
-    fun testShowTextActivityInitial() {
+    fun testShowTextActivityInitial() 
+    {
         val intent = Intent(ApplicationProvider.getApplicationContext(), ShowTextActivity::class.java)
         val scenario = ActivityScenario.launch<ShowTextActivity>(intent)
-        try {
+        try{
             onView(withId(R.id.show_text_view)).check(matches(withText("Hello from ShowTextActivity")))
-        } finally {
+        }finally {
             scenario.close()
         }
     }
