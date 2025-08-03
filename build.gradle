@@ -1,0 +1,42 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' version '7.2.0' apply false
+    id 'com.android.library' version '7.2.0' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.10' apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+buildscript {
+    ext.kotlinVersion = "1.9.0"
+    ext.agpVersion = '8.11.1'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$agpVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+ext {
+    buildToolsVersion = "34.0.0"
+    androidxAnnotationVersion = "1.7.0"
+    robolectricVersion = "4.11.1"
+    guavaVersion = "33.0.0-android"
+    extTruthVersion = "1.6.0"
+    coreVersion = "1.12.0"
+    extJUnitVersion = "1.2.0"
+    runnerVersion = "1.6.0"
+    espressoVersion = "3.5.1"
+}
